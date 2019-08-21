@@ -1,0 +1,82 @@
+package ch.wyler.microspot.fragments
+
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.widget.EditText
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import ch.sik.teko.home.networking.RestApi
+import ch.wyler.microspot.R
+import ch.wyler.microspot.adapter.MatchListAdapter
+import ch.wyler.microspot.models.Product
+import ch.wyler.microspot.models.SearchApiRequest
+import kotlinx.android.synthetic.main.fragment_search.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
+class SearchFragment : Fragment(), MatchListAdapter.AdapterCallback {
+
+    private val adapter = MatchListAdapter(this)
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_search, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        view.findViewById<EditText>(R.id.search).setOnEditorActionListener { v, actionId, event ->
+            return@setOnEditorActionListener when (actionId) {
+                EditorInfo.IME_ACTION_SEARCH -> {
+                    showProducts(view, v.getText().toString())
+                    true
+                }
+                else -> false
+            }
+        }
+
+        showProducts(view, "")
+
+    }
+
+    private fun showProducts(view: View, query: String) {
+        //Set the adapter
+        match_list.layoutManager = LinearLayoutManager(view.context)
+        match_list.adapter = adapter
+
+
+        //Load the user from the network
+        RestApi.Client.getInstance().fetchProducts(query, 20)
+            .enqueue(object : Callback<SearchApiRequest> {
+                override fun onFailure(call: Call<SearchApiRequest>, t: Throwable) {
+                    //Display an error to the user, because there was a io exception
+                }
+
+                override fun onResponse(call: Call<SearchApiRequest>, response: Response<SearchApiRequest>) {
+                    //We got a response
+                    if (response.isSuccessful) {
+                        //Bind the data only when we have it
+                        response.body()?.products?.apply {
+                            adapter.setData(this.toMutableList())
+                        }
+
+                    } else {
+                        //Display an error
+                    }
+                }
+            })
+    }
+
+    /**
+     * Callback for the adapter
+     */
+    override fun onItemClicked(product: Product, position: Int) {
+
+    }
+}
