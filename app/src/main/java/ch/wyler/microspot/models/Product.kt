@@ -7,6 +7,8 @@ data class Product(
     val code: String,
     @SerializedName("name")
     val name: String,
+    @SerializedName("price")
+    val price: Price,
     @SerializedName("customImageData")
     val images: List<CustomImageData>
 )
