@@ -15,7 +15,7 @@ import ch.sik.teko.home.networking.RestApi
 import ch.wyler.microspot.R
 import ch.wyler.microspot.adapter.ProductSearchListAdapter
 import ch.wyler.microspot.models.Product
-import ch.wyler.microspot.models.SearchApiRequest
+import ch.wyler.microspot.models.ProductSearchResult
 import kotlinx.android.synthetic.main.fragment_search.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -53,14 +53,14 @@ class SearchFragment : Fragment(), ProductSearchListAdapter.AdapterCallback {
         product_list.adapter = adapter
 
 
-        //Load the user from the network
-        RestApi.Client.getInstance().fetchProducts(query, 20)
-            .enqueue(object : Callback<SearchApiRequest> {
-                override fun onFailure(call: Call<SearchApiRequest>, t: Throwable) {
+        //Load the products from the network
+        RestApi.Client.getInstance().fetchProducts(query, 10)
+            .enqueue(object : Callback<ProductSearchResult> {
+                override fun onFailure(call: Call<ProductSearchResult>, t: Throwable) {
                     //Display an error to the user, because there was a io exception
                 }
 
-                override fun onResponse(call: Call<SearchApiRequest>, response: Response<SearchApiRequest>) {
+                override fun onResponse(call: Call<ProductSearchResult>, response: Response<ProductSearchResult>) {
                     //We got a response
                     if (response.isSuccessful) {
                         //Bind the data only when we have it
@@ -79,7 +79,7 @@ class SearchFragment : Fragment(), ProductSearchListAdapter.AdapterCallback {
      * Callback for the adapter
      */
     override fun onItemClicked(product: Product, position: Int) {
-        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("http://www.microspot.ch/--P"+ product.code))
+        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("http://www.microspot.ch/--P" + product.code))
         startActivity(browserIntent)
     }
 }
