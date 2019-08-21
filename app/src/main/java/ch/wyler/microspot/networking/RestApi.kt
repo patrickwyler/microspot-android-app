@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit
 object RestApi {
 
     //How long is the time out for the ok http client
-    private const val TIMEOUT_IN_SEC = 3
+    private const val TIMEOUT_IN_SEC = 10
 
     object Client {
 
