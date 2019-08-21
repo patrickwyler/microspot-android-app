@@ -31,6 +31,8 @@ class SearchFragment : Fragment(), MatchListAdapter.AdapterCallback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        showProducts(view, "")
+
         view.findViewById<EditText>(R.id.search).setOnEditorActionListener { v, actionId, event ->
             return@setOnEditorActionListener when (actionId) {
                 EditorInfo.IME_ACTION_SEARCH -> {
@@ -40,15 +42,12 @@ class SearchFragment : Fragment(), MatchListAdapter.AdapterCallback {
                 else -> false
             }
         }
-
-        showProducts(view, "")
-
     }
 
     private fun showProducts(view: View, query: String) {
         //Set the adapter
-        match_list.layoutManager = LinearLayoutManager(view.context)
-        match_list.adapter = adapter
+        product_list.layoutManager = LinearLayoutManager(view.context)
+        product_list.adapter = adapter
 
 
         //Load the user from the network

@@ -15,7 +15,7 @@
             android:imeOptions="actionSearch"/>
 
     <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/match_list"
+            android:id="@+id/product_list"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/search"

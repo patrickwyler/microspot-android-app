@@ -6,7 +6,7 @@
         android:layout_height="wrap_content" xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/user_img"
+        android:id="@+id/product_img"
         android:layout_width="0dp"
         android:layout_height="56dp"
         android:layout_marginEnd="8dp"
@@ -17,9 +17,9 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/user_name"
-        tools:text="Hans Mueller"
-        app:layout_constraintStart_toEndOf="@id/user_img"
+        android:id="@+id/product_name"
+        tools:text="Product"
+        app:layout_constraintStart_toEndOf="@id/product_img"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_margin="8dp"
