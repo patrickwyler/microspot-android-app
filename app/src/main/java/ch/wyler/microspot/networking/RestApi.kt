@@ -1,4 +1,4 @@
-package ch.sik.teko.home.networking
+package ch.wyler.microspot.networking
 
 import com.google.gson.Gson
 import okhttp3.OkHttpClient

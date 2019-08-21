@@ -2,8 +2,8 @@ package ch.wyler.microspot
 
 import android.app.Application
 import android.content.Context
-import ch.sik.teko.home.networking.RestApi
 import ch.wyler.microspot.models.ProductSearchResult
+import ch.wyler.microspot.networking.RestApi
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

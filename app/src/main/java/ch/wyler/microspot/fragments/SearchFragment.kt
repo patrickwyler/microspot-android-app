@@ -11,11 +11,11 @@ import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import ch.sik.teko.home.networking.RestApi
 import ch.wyler.microspot.R
 import ch.wyler.microspot.adapter.ProductSearchListAdapter
 import ch.wyler.microspot.models.Product
 import ch.wyler.microspot.models.ProductSearchResult
+import ch.wyler.microspot.networking.RestApi
 import kotlinx.android.synthetic.main.fragment_search.*
 import retrofit2.Call
 import retrofit2.Callback
