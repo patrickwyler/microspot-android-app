@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import ch.wyler.microspot.R
 import ch.wyler.microspot.models.Product
 import com.squareup.picasso.Picasso
-import jp.wasabeef.picasso.transformations.CropCircleTransformation
+import jp.wasabeef.picasso.transformations.CropSquareTransformation
 import kotlinx.android.synthetic.main.item_product.view.*
 
 class ProductSearchListAdapter(private val callback: AdapterCallback) :
@@ -45,7 +45,7 @@ class ProductSearchListAdapter(private val callback: AdapterCallback) :
 
 
     private class UserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val transform = CropCircleTransformation()
+        val transform = CropSquareTransformation()
 
         fun bind(product: Product, callback: AdapterCallback) {
             //Load the image to the corresponding image view
