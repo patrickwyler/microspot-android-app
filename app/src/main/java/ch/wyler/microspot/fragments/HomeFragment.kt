@@ -13,10 +13,7 @@ import ch.wyler.microspot.R
 
 class HomeFragment : Fragment() {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
@@ -35,7 +32,6 @@ class HomeFragment : Fragment() {
     private fun readFromSharedPrefTheTotalAmountOfProducts(): Int? {
         val sharedPref = activity?.getSharedPreferences(getString(R.string.preference_file), Context.MODE_PRIVATE)
         val defaultValue = resources.getInteger(R.integer.amount_of_products_default_value)
-        val amountOfProducts = sharedPref?.getInt(getString(R.string.amount_of_products), defaultValue)
-        return amountOfProducts
+        return sharedPref?.getInt(getString(R.string.amount_of_products), defaultValue)
     }
 }
