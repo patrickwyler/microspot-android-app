@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">microspot.ch</string>
     <string name="action_home">Home</string>
-    <string name="action_search">Search</string>
+    <string name="action_search">Suche</string>
     <string name="homeTitle">Über microspot.ch</string>
     <string name="homeText">microspot.ch ist der günstigste Heimelektronik-Onlineshop der Schweiz ganz gemäss unserem Motto "Der Preis entscheidet". Unser Sortiment reicht von Computer, Laptop &amp; Software Artikeln über Smartphones und Zubehör, bis hin zu Fernseh- und Audio-Geräten – zu Tiefpreisen! Zudem bieten wir eine grosse Auswahl an Haushalts- und Küchengeräten sowie alles für Ihr Wohlbefinden und Ihre Schönheit in der Kategorie Beauty &amp; Gesundheit.</string>
-    <string name="search_hint">Search text</string>
+    <string name="search_hint">Apple iPhone Xs</string>
     <string name="preference_file">ch.wyler.microspot.pfk48313648</string>
     <string name="amount_of_products">amountOfProducts</string>
     <string name="amountOfProductsText">Anzahl Produkte:</string>
