@@ -43,7 +43,6 @@ class ProductSearchListAdapter(private val callback: AdapterCallback) :
         }
     }
 
-
     private class UserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val transform = CropSquareTransformation()
 

@@ -52,7 +52,6 @@ class SearchFragment : Fragment(), ProductSearchListAdapter.AdapterCallback {
         product_list.layoutManager = LinearLayoutManager(view.context)
         product_list.adapter = adapter
 
-
         //Load the products from the network
         RestApi.Client.getInstance().fetchProducts(query, 10)
             .enqueue(object : Callback<ProductSearchResult> {

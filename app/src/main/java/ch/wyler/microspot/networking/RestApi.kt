@@ -15,7 +15,6 @@ object RestApi {
     object Client {
 
         private var instance: Api? = null
-        private var url: String? = null
 
         fun build(endpoint: String = "https://www.microspot.ch/mspocc/occ/msp/") {
             val retrofit = buildRetrofit(endpoint)
@@ -32,7 +31,6 @@ object RestApi {
         }
 
     }
-
 
     private fun buildRetrofit(endpoint: String): Retrofit {
         //Create a ok http instance builder for configuration
@@ -54,5 +52,4 @@ object RestApi {
             .addConverterFactory(GsonConverterFactory.create(Gson()))
             .build()
     }
-
 }
