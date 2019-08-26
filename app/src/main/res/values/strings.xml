@@ -8,5 +8,8 @@
     <string name="preference_file">ch.wyler.microspot.pfk48313648</string>
     <string name="amount_of_products">amountOfProducts</string>
     <string name="amountOfProductsText">Anzahl Produkte:</string>
+    <string name="online">ONLINE</string>
+    <string name="offline">OFFLINE</string>
+    <string name="checking">Checking...</string>
     <integer name="amount_of_products_default_value">100000</integer>
 </resources>

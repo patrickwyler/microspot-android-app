@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import ch.wyler.microspot.R
+import ch.wyler.microspot.tasks.HealthcheckTask
 
 
 class HomeFragment : Fragment() {
@@ -27,6 +28,10 @@ class HomeFragment : Fragment() {
         // update text
         val tv = view.findViewById(R.id.homeAmountOfProducts) as TextView
         tv.text = getString(R.string.amountOfProductsText) + " " + amountOfProducts.toString()
+
+        // asyc task
+        val asycTask = HealthcheckTask(view)
+        asycTask.execute()
     }
 
     private fun readFromSharedPrefTheTotalAmountOfProducts(): Int? {
