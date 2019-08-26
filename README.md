@@ -7,6 +7,9 @@ Small school project for demonstrating:
 - async function example (healthcheck)
 - support bubble (prefill email form)
 
+### APK
+[APK](../blob/master/apk/app-debug-apk-v1.apk)
+
 ## Mocks
 ### Home
 ![](/doc/mock_1.png)  
