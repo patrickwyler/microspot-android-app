@@ -8,13 +8,15 @@ Small school project for demonstrating:
 - support bubble (prefill email form)
 
 ## Mocks
-![](/doc/mock_1.png)
-![](/doc/mock_2.png)
-![](/doc/mock_3.png)
+### Home
+![](/doc/mock_1.png)  
+![](/doc/mock_2.png)  
+### Search
+![](/doc/mock_3.png)  
 
 ## Screenshots
-![](/doc/screenshot_home_1.png)
-![](/doc/screenshot_home_2.png)
-![](/doc/screenshot_menu.png)
-![](/doc/screenshot_search.png)
-![](/doc/screenshot_search_link.png)
+![](/doc/screenshot_home_1.png)  
+![](/doc/screenshot_home_2.png)  
+![](/doc/screenshot_menu.png)  
+![](/doc/screenshot_search.png)  
+![](/doc/screenshot_search_link.png)  
