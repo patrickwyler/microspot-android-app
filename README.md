@@ -10,5 +10,5 @@ Small school project for demonstrating:
 ![](/doc/screenshot_home_1.png)
 ![](/doc/screenshot_home_2.png)
 ![](/doc/screenshot_menu.png)
-![](/doc/screenshot_search_link.png)
 ![](/doc/screenshot_search.png)
+![](/doc/screenshot_search_link.png)
