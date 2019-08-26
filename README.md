@@ -7,6 +7,11 @@ Small school project for demonstrating:
 - async function example (healthcheck)
 - support bubble (prefill email form)
 
+## Mocks
+![](/doc/mock_1.png)
+![](/doc/mock_2.png)
+![](/doc/mock_3.png)
+
 ## Screenshots
 ![](/doc/screenshot_home_1.png)
 ![](/doc/screenshot_home_2.png)
