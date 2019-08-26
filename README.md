@@ -5,6 +5,7 @@ Small school project for demonstrating:
 - switching between different views
 - persistence with shared preferences (amount of online products)
 - async function example (healthcheck)
+- support bubble (prefill email form)
 
 ## Screenshots
 ![](/doc/screenshot_home_1.png)
