@@ -46,16 +46,20 @@ class HealthcheckTask constructor(private val rootView: View) : AsyncTask<String
             Scheme("https", SSLSocketFactory.getSocketFactory(), 443)
         )
 
-        val response = httpclient.execute(HttpGet("https://www.microspot.ch"))
-        val statusLine = response.statusLine
+        try {
+            val response = httpclient.execute(HttpGet("https://www.microspot.ch"))
+            val statusLine = response.statusLine
 
-        return if (HttpStatus.SC_OK.equals(statusLine.statusCode)) {
-            val out = ByteArrayOutputStream()
-            out.close()
-            true
-        } else {
-            response.entity.content.close()
-            false
+            if (HttpStatus.SC_OK.equals(statusLine.statusCode)) {
+                val out = ByteArrayOutputStream()
+                out.close()
+                return true // online
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
+
+        // on error or not correct status code return "offline"
+        return false
     }
 }
