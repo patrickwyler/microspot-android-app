@@ -1,6 +1,6 @@
 # Microspot android app
 Small school project for demonstrating:
-- Performing webrequests (amount of products & product search request) 
+- performing webrequests (amount of products & product search request) 
 - RecyclerView (search result list)
 - switching between different views
 - persistence with shared preferences (amount of online products)
@@ -23,3 +23,7 @@ Small school project for demonstrating:
 ### Search
 ![](/doc/screenshot_search.png)  
 ![](/doc/screenshot_search_link.png)  
+
+## APK
+For testing purposes
+[APK](/apk/app-debug-apk-v1.apk)
