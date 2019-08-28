@@ -8,7 +8,7 @@ Small school project for demonstrating:
 - support bubble (prefill email form)
 
 # Demo
-[![Watch the video](/doc/demo_play.png)](/doc/screen_record.webm)
+[![Watch the video](/doc/demo_play.png)](/doc/app_demo.webm)
 
 ## Mocks
 ### Home
