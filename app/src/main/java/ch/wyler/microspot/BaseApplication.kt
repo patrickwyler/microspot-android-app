@@ -19,12 +19,12 @@ class BaseApplication : Application() {
         // build api instance
         RestApi.Client.build()
 
-        // count total amount of shop products
+        // on create count total amount of shop products and write them to shared pref
         countProducts()
     }
 
     private fun countProducts() {
-        //Load the products from the network
+        // search for all products and get total amount of products out of the result
         RestApi.Client.getInstance().fetchProducts("", 1)
             .enqueue(object : Callback<ProductSearchResult> {
                 override fun onFailure(call: Call<ProductSearchResult>, t: Throwable) {
@@ -54,6 +54,7 @@ class BaseApplication : Application() {
                                 getString(R.string.amount_of_products),
                                 response.body()?.pagination!!.totalNumberOfResults
                             )
+                            // save
                             commit()
                         }
                     }

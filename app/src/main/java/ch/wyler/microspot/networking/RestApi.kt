@@ -9,14 +9,13 @@ import java.util.concurrent.TimeUnit
 
 object RestApi {
 
-    //How long is the time out for the ok http client
     private const val TIMEOUT_IN_SEC = 10
+    private const val ENDPOINT = "https://www.microspot.ch/mspocc/occ/msp/"
 
     object Client {
-
         private var instance: Api? = null
 
-        fun build(endpoint: String = "https://www.microspot.ch/mspocc/occ/msp/") {
+        fun build(endpoint: String = ENDPOINT) {
             val retrofit = buildRetrofit(endpoint)
 
             instance = retrofit.create(Api::class.java)
@@ -33,19 +32,17 @@ object RestApi {
     }
 
     private fun buildRetrofit(endpoint: String): Retrofit {
-        //Create a ok http instance builder for configuration
-        val builder = OkHttpClient.Builder()
-            .readTimeout(TIMEOUT_IN_SEC.toLong(), TimeUnit.SECONDS)
+        // create a ok http instance builder for configuration
+        val builder = OkHttpClient.Builder().readTimeout(TIMEOUT_IN_SEC.toLong(), TimeUnit.SECONDS)
 
-        //We wan't so see the actual web requests.
+        // log webrequests
         val httpLoggingInterceptor = HttpLoggingInterceptor()
         httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
         builder.addInterceptor(httpLoggingInterceptor)
 
-        //This is the ok http instance
         val client = builder.build()
 
-        //Build the Retrofit instance
+        // build instance
         return Retrofit.Builder()
             .baseUrl(endpoint)
             .client(client)

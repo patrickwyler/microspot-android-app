@@ -25,20 +25,24 @@ import retrofit2.Response
 class SearchFragment : Fragment(), ProductSearchListAdapter.AdapterCallback {
 
     private val adapter = ProductSearchListAdapter(this)
+    private val baseUrlForProduct = "http://www.microspot.ch/--P"
+    private val maxAmountOfSearchResults = 10;
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
+        // inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_search, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // search for all products
         showProducts(view, "")
 
         view.findViewById<EditText>(R.id.search).setOnEditorActionListener { v, actionId, event ->
             return@setOnEditorActionListener when (actionId) {
                 EditorInfo.IME_ACTION_SEARCH -> {
+                    // show the result of the searched string
                     showProducts(view, v.getText().toString())
                     true
                 }
@@ -47,28 +51,29 @@ class SearchFragment : Fragment(), ProductSearchListAdapter.AdapterCallback {
         }
     }
 
+    /**
+     * Search for products and show the result
+     */
     private fun showProducts(view: View, query: String) {
-        //Set the adapter
+        // set the adapter
         product_list.layoutManager = LinearLayoutManager(view.context)
         product_list.adapter = adapter
 
-        //Load the products from the network
-        RestApi.Client.getInstance().fetchProducts(query, 10)
+        // load the products from the network
+        RestApi.Client.getInstance().fetchProducts(query, maxAmountOfSearchResults)
             .enqueue(object : Callback<ProductSearchResult> {
                 override fun onFailure(call: Call<ProductSearchResult>, t: Throwable) {
-                    //Display an error to the user, because there was a io exception
+                    // display an error to the user, because there was a io exception
                 }
 
                 override fun onResponse(call: Call<ProductSearchResult>, response: Response<ProductSearchResult>) {
-                    //We got a response
+                    // we got a response
                     if (response.isSuccessful) {
-                        //Bind the data only when we have it
+                        // bind the data only when we have it
                         response.body()?.products?.apply {
                             adapter.setData(this.toMutableList())
                         }
 
-                    } else {
-                        //Display an error
                     }
                 }
             })
@@ -78,7 +83,7 @@ class SearchFragment : Fragment(), ProductSearchListAdapter.AdapterCallback {
      * Callback for the adapter
      */
     override fun onItemClicked(product: Product, position: Int) {
-        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("http://www.microspot.ch/--P" + product.code))
+        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(baseUrlForProduct + product.code))
         startActivity(browserIntent)
     }
 }

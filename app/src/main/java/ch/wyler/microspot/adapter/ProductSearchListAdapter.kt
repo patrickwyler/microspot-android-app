@@ -10,6 +10,9 @@ import com.squareup.picasso.Picasso
 import jp.wasabeef.picasso.transformations.CropSquareTransformation
 import kotlinx.android.synthetic.main.item_product.view.*
 
+/**
+ * Adapter for the product search list
+ */
 class ProductSearchListAdapter(private val callback: AdapterCallback) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -44,21 +47,19 @@ class ProductSearchListAdapter(private val callback: AdapterCallback) :
     }
 
     private class UserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val transform = CropSquareTransformation()
+        private val baseUrl = "https://www.microspot.ch/"
+        private val transform = CropSquareTransformation()
 
         fun bind(product: Product, callback: AdapterCallback) {
-            //Load the image to the corresponding image view
-
-            // Picasso Framework to get images async
+            // set product data
             Picasso.get()
-                .load("https://www.microspot.ch/" + product.images.get(0).images.filter { it.size == 260 }.first().url)
+                .load(baseUrl + product.images.get(0).images.filter { it.size == 260 }.first().url)
                 .transform(transform)
                 .into(itemView.product_img)
-            //Set the product name
             itemView.product_name.text = product.name
-            // Set the product price
             itemView.product_price.text = product.price.formattedValue
-            //Bind the adapter click
+
+            // bind adapter click
             itemView.setOnClickListener {
                 callback.onItemClicked(product, adapterPosition)
             }

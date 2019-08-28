@@ -12,11 +12,16 @@ import org.apache.http.impl.client.DefaultHttpClient
 import java.io.ByteArrayOutputStream
 
 
+/**
+ * Task for checking if microspot.ch is online or not
+ */
 class HealthcheckTask constructor(private val rootView: View) : AsyncTask<String, Void, Boolean>() {
+
+    private var uri = "https://www.microspot.ch"
 
     override fun onPreExecute() {
         val textView = rootView.findViewById<TextView>(R.id.healthcheck)
-        textView.setText(R.string.checking)
+        displayCheckingStatus(textView)
     }
 
     override fun doInBackground(vararg params: String): Boolean {
@@ -29,37 +34,53 @@ class HealthcheckTask constructor(private val rootView: View) : AsyncTask<String
     override fun onPostExecute(result: Boolean) {
         val textView = rootView.findViewById<TextView>(R.id.healthcheck)
 
+        // display online/offline status
         if (result) {
-            textView?.setText(R.string.online)
-            textView.setBackgroundResource(R.color.colorOnline)
-        } else {
-            textView?.setText(R.string.offline)
-            textView.setBackgroundResource(R.color.colorOffline)
+            displayOnlineStatus(textView)
+            return
         }
 
+        displayOfflineStatus(textView)
     }
 
     private fun checkStatus(): Boolean {
         val httpclient = DefaultHttpClient()
 
+        // had to configure this otherwise it's not working..
         httpclient.getConnectionManager().getSchemeRegistry().register(
             Scheme("https", SSLSocketFactory.getSocketFactory(), 443)
         )
 
         try {
-            val response = httpclient.execute(HttpGet("https://www.microspot.ch"))
+            // check website status
+            val response = httpclient.execute(HttpGet(uri))
             val statusLine = response.statusLine
 
             if (HttpStatus.SC_OK.equals(statusLine.statusCode)) {
                 val out = ByteArrayOutputStream()
                 out.close()
-                return true // online
+                // return online
+                return true
             }
         } catch (e: Exception) {
             e.printStackTrace()
         }
 
-        // on error or not correct status code return "offline"
+        // return offline
         return false
+    }
+
+    private fun displayCheckingStatus(textView: TextView) {
+        textView.setText(R.string.checking)
+    }
+
+    private fun displayOfflineStatus(textView: TextView) {
+        textView?.setText(R.string.offline)
+        textView.setBackgroundResource(R.color.colorOffline)
+    }
+
+    private fun displayOnlineStatus(textView: TextView) {
+        textView?.setText(R.string.online)
+        textView.setBackgroundResource(R.color.colorOnline)
     }
 }
